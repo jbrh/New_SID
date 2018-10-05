@@ -1,18 +1,6 @@
-/* hack reset (for production, use Yahoo! reset CSS)
-*************************/
 
-/**
-{
-	margin: 0;
-	padding: 0;
-}*/
-
-
-
-/* body
-*************************/
 body {
-	   color:  #000;			
+	color:  #000;			
 	background-color:	#fff;
 	font-family:"Myriad Pro", Myriad, Helvetica, Arial, sans-serif;
 	font-size:85%;
@@ -23,21 +11,6 @@ body {
 	height: 1200px;
 }
 
-header, section, article, footer {
-	padding:0px 5px 0px;
-	margin:3px;
-/*	border:1px solid #e7e2d7;
-	border-radius:8px;*/
-/*	background:#fff url(sprites.png) repeat-x 0px -120px; */
-}
-
-header, section, article, footer {
-	padding:0px 5px 0px;
-	margin:3px;
-/*	border:1px solid #e7e2d7;
-	border-radius:8px;*/
-/*	background:#fff url(sprites.png) repeat-x 0px -120px; */
-}
 
 h1, h2, h3, h4, h5, h6 {
     color: #333;
@@ -50,55 +23,13 @@ h1, h2, h3, h4, h5, h6 {
     /*    text-shadow: -0.06em 0 0 red, 0.06em 0 0 cyan;*/
 }
 
-h1 {  color: #1d679a; letter-spacing:-0.08em;}
-h3 {  font-size: 1.3em; }
 
-header {
-	display:block;
-	position:relative;
-	text-align:left;
-}
-
-header h1 {
-	font-size:2.3em;
-	text-transform:none;
-	letter-spacing:0em;
-	text-align:left;
-}
-
-header h2 {
-	margin:-10px 0px 0px;
-	font-size:1.3em;
-	text-align:left
-}
-
-
-/*
-body
-{
-	font: 14px/21px Georgia, serif;
-	color: #170707;
-	background: #e3d79b url(images/mainbg.jpg) left 40px repeat-x;
-} */
-
-/* links
-*************************/
 
 a:link, a:visited, a:hover, a:active
 {
 	text-decoration: none;
 }
 
-/* inline elements
-*************************/
-
-strong
-{
-	font-weight: bold;
-}
-
-/* tabs
-*************************/
 
 ul.tabs
 {
@@ -168,7 +99,7 @@ ul.dropdown li a
 
 
 
-div#top{  
+#top{  
     width: 1130px; 
     height: 70px; 
     float: left;  
@@ -176,42 +107,42 @@ div#top{
     	font-size:100%;
 }
 
-div#left {  
+#left {  
     width: 500px;  
     float: left;  
-    margin: 10px 35px 5px 2px;  
+    margin: 0px 35px 5px 2px;  
     	font-size:100%;
     
 }
 
-div#left p{
+#left p{
   text-align: left;
   color: black;
   font-size: 120%;
   padding-left: 15px;
 }
 
-div#right { 
+#right { 
     width: 600px;
     float: right;  
     margin: 0 5px;  
-   	font-size:100%;
+   	/*font-size:100%;*/
  }
 
-div#right p{
+#right p{
 	font-size:120%; 
 	text-align: left; 
 	color: #333; 
 	padding-left: 10px;
 }
 
- div#container {
+ #container {
 	box-sizing: border-box;
 	width: 600px;
 	height: 525px;
 	float: right;
 	padding: 20px 15px 15px 15px;
-	margin: 15px auto 30px auto;
+	margin: 0px auto 30px auto;
 	border: 1px solid #ddd;
 	background: #fff;
 	background: linear-gradient(#f6f6f6 0, #fff 50px);
@@ -226,7 +157,7 @@ div#right p{
 	-webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
-div#middle{  
+#middle{  
   	width: 1100px;
   	height: 150px;
   	float: left;
@@ -235,7 +166,7 @@ div#middle{
 }
 
 
-div#bottom{  
+#bottom{  
     width: 1100px;  
     height: 150px;
     float: left;  
@@ -264,13 +195,13 @@ div#bottom{
 }
 
 #end {
-    position: fixed;
+	clear:both;
     bottom: 0;
     width: 100%;
 }
 
 
-div#footer {
+#footer {
 	display:block;
 	clear:none !important;
 	width:900px;
@@ -278,8 +209,6 @@ div#footer {
 }
 
 
-
-/* http://johnsardine.com/freebies/dl-html-css/simple-little-tab/ */
 
 .legend table {
 	border-spacing: 5px;
