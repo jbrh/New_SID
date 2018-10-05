@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+<meta charset="UTF-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<title>SID via Forest Transect</title>
+
+<link rel="shortcut icon" href="jbrhicon.png">
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/0.5.0/sweet-alert.min.js"></script> 
+
+<script src="kinetic-v5.1.0.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" type="text/css" href="sweetalert.css"> 
+
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+
+    tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+
+  });
+
+</script>
+
+<script type='text/javascript' src='http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+<style>
+
+h1 {
+  font-size: 210%;
+  margin-left: 15px;
+}
+
+</style>
+
+<script>
+$(document).ready(function() {
+  $('showhide').hide();
+});
+</script>
+
+</head>
+<body>
+
+<p><img src="foresttransectsmall.jpg" style="float:right" width="350"></p>
+
+<br/>
+<h1>Simpson's Index of Diversity For A Forest Community</h1>
+<br>		
+
+<p id="description">This worksheet will provide additional practie determining Simpsons Index of Diversity for a forest community.  Sort the leaves from the pile below right into species groupings (use key below to help with identification).  One leaf was taken from each tree along the forest transect.</br></p>
+
+<!--
+what I want this worksheet to accomplish:  Show image of leaves collected along transects in two forests; image of meadow plants collected with quadrats in two meadows; image of macroinvertebrates collected using kicknet in two streams.  From these images, students will count numbers of individuals of each species shown and calculate SID to determind which of two locations has greater overall species diversity (evaluating for species richness and species evenness).  Will have sudents input numbers of individuals in column 1, and for n(n-1) in column 2 as well as determine T and sum of n(n-1) and get an alert button if right or wrong.  Will have show/hide buttons to display correctly formatted SID equation and analysis. 
+-->
+<br/><br/>
+
+<div  id="top">
+<p>White Oak <img src = "TinyWhiteOakLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Red Maple <img src = "TinyRedMapleLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Tulip Tree <img src = "TinyTulipTreeLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Sassafras <img src = "TinySassafrasLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Hickory <img src = "TinyHickoryLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp White Pine <img src = "TinyWhitePineLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Redbud <img src = "TinyRedbudLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Beech <img src = "TinyBeechLeaf.png"> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Cherry <img src = "TinyCherryLeaf.png"></p>
+</div>
+
+
+<div id="left">
+
+<p>Count Number of Trees (n) and Calculate n(n-1) And Enter Below</p>
+<br>
+
+<table>
+    <thead>
+        <tr>
+            <th>species</th>
+            <th>number</th>
+            <th>   </th>
+            <th>n(n-1)</th>
+            <th>   </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="tr1">
+            <td>White Oak</td><td><input type="number" min="0" max="20" step="1" value="0" id="whiteoaknum" ></td><td><input type="button" value="submit" onclick="whiteoakone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="whiteoakeven" ></td><td><input type="button" value="submit" onclick="whiteoaktwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Red Maple</td><td><input type="number" min="0" max="20" step="1" value="0" id="redmaplenum" ></td><td><input type="button" value="submit" onclick="redmapleone()" ></td><td><input type="number" min="0" max="40" step="1" value="0" id="redmapleeven" ></td><td><input type="button" value="submit" onclick="redmapletwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Tulip tree</td><td><input type="number" min="0" max="20" step="1" value="0" id="tuliptreenum" ></td><td><input type="button" value="submit" onclick="tuliptreeone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="tuliptreeeven" ></td><td><input type="button" value="submit" onclick="tuliptreetwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Sassafras</td><td><input type="number" min="0" max="20" step="1" value="0" id="sassafrasnum" ></td><td><input type="button" value="submit" onclick="sassafrasone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="sassafraseven" ></td><td><input type="button" value="submit" onclick="sassafrastwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Hickory</td><td><input type="number" min="0" max="20" step="1" value="0" id="hickorynum" ></td><td><input type="button" value="submit" onclick="hickoryone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="hickoryeven" ></td><td><input type="button" value="submit" onclick="hickorytwo()"></td>
+        </tr>
+        <tr id="tr1">
+           <td>Rebud</td><td><input type="number" min="0" max="20" step="1" value="0" id="redbudnum" ></td><td><input type="button" value="submit" onclick="redbudone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="redbudeven" ></td><td><input type="button" value="submit" onclick="redbudtwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Beech</td><td><input type="number" min="0" max="20" step="1" value="0" id="beechnum" ></td><td><input type="button" value="submit" onclick="beechone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="beecheven" ></td><td><input type="button" value="submit" onclick="beechtwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>Cherry</td><td><input type="number" min="0" max="20" step="1" value="0" id="cherrynum" ></td><td><input type="button" value="submit" onclick="cherryone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="cherryeven" ></td><td><input type="button" value="submit" onclick="cherrytwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td>White Pine</td><td><input type="number" min="0" max="20" step="1" value="0" id="whitepinenum" ></td><td><input type="button" value="submit" onclick="whitepineone()" ></td><td><input type="number" min="0" max="20" step="1" value="0" id="whitepineeven" ></td><td><input type="button" value="submit" onclick="whitepinetwo()"></td>
+        </tr>
+        <tr id="tr1">
+            <td></td><td>T = <input type="number" min="0" max="40" step="1" value="0" id="totalnum" ></td><td><input type="button" value="submit" onclick="totalnum()"></td><td>&#x3A3;n(n-1) = <input type="number" min="0" max="60" step="1" value="0" id="sumofntimesnminusone" ></td><td><input type="button" value="submit" onclick="sumofntimesnminusone()"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+<!-- I got the idea below from http://html.net/tutorials/javascript/lesson16.php but changed a bit by using input type as button rather than submit-->
+
+<script type="text/javascript">
+    function whiteoakone(){
+        var userName = document.getElementById("whiteoaknum").value;
+        if (userName === '3')
+        {
+       swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function whiteoaktwo(){
+        var userName = document.getElementById("whiteoakeven").value;
+        if (userName === '6')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+       swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function redmapleone(){
+        var userName = document.getElementById("redmaplenum").value;
+        if (userName === '6')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function redmapletwo(){
+        var userName = document.getElementById("redmapleeven").value;
+        if (userName === '30')
+        {
+       swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function tuliptreeone(){
+        var userName = document.getElementById("tuliptreenum").value;
+        if (userName === '4')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function tuliptreetwo(){
+        var userName = document.getElementById("tuliptreeeven").value;
+        if (userName === '12')
+        {
+       swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function sassafrasone(){
+        var userName = document.getElementById("sassafrasnum").value;
+        if (userName === '2')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function sassafrastwo(){
+        var userName = document.getElementById("sassafraseven").value;
+        if (userName === '2')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function hickoryone(){
+        var userName = document.getElementById("hickorynum").value;
+        if (userName === '1')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function hickorytwo(){
+        var userName = document.getElementById("hickoryeven").value;
+        if (userName === '0')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function redbudone(){
+        var userName = document.getElementById("redbudnum").value;
+        if (userName === '2')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function redbudtwo(){
+        var userName = document.getElementById("redbudeven").value;
+        if (userName === '2')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function beechone(){
+        var userName = document.getElementById("beechnum").value;
+        if (userName === '3')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function beechtwo(){
+        var userName = document.getElementById("beecheven").value;
+        if (userName === '6')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function cherryone(){
+        var userName = document.getElementById("cherrynum").value;
+        if (userName === '5')
+        {
+       swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function cherrytwo(){
+        var userName = document.getElementById("cherryeven").value;
+        if (userName === '20')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function whitepineone(){
+        var userName = document.getElementById("whitepinenum").value;
+        if (userName === '1')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function whitepinetwo(){
+        var userName = document.getElementById("whitepineeven").value;
+        if (userName === '0')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function totalnum(){
+        var userName = document.getElementById("totalnum").value;
+        if (userName === '27')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+    function sumofntimesnminusone(){
+        var userName = document.getElementById("sumofntimesnminusone").value;
+        if (userName === '78')
+        {
+        swal({   
+                    title: "Yay! You are correct :)", 
+                    imageUrl: "http://www.animateit.net/data/media/192/acc004.gif", 
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        else {
+        swal({   
+                    title: "Nope, please try again :)",
+                    imageUrl: "http://www.animateit.net/data/media/192/acc012.gif",  
+                    timer: 2000,   
+                    showConfirmButton: false });
+        }
+        }
+ </script>
+
+
+ <div id="right">
+
+<p>One Leaf Per Tree Along Transect: <br>Drag Leaves From The Pile To Segregate Into Species Groupings</p>
+</div>
+
+<!-- This is the kinetic JS canvas?-->
+
+<div id="container"></div>
+
+    
+
+    <script>
+      function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++; 
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];
+        }
+      }
+      function initStage(images) {
+        var stage = new Kinetic.Stage({
+          container: 'container',
+          width: 600,
+          height: 500
+        });
+        var layer = new Kinetic.Layer();
+
+
+        // Liriodendron
+        var LiriodendronLeaf = new Kinetic.Image({
+          image: images.LiriodendronLeaf,
+          x: 270,
+          y: 110,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(LiriodendronLeaf);
+
+        // Redbud
+        var RedbudLeaf = new Kinetic.Image({
+          image: images.RedbudLeaf,
+          x: 100,
+          y: 40,
+          width: 125,
+          height: 125,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedbudLeaf);
+
+        // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 350,
+          y: 55,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+
+
+        // Beech
+        var BeechLeaf = new Kinetic.Image({
+          image: images.BeechLeaf,
+          x: 230,
+          y: 80,
+          width: 85,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(BeechLeaf);
+
+
+        // Cherry
+        var CherryLeaf = new Kinetic.Image({
+          image: images.CherryLeaf,
+          x: 175,
+          y: 100,
+          width: 90,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(CherryLeaf);
+
+         // Redbud
+        var RedbudLeaf = new Kinetic.Image({
+          image: images.RedbudLeaf,
+          x: 200,
+          y: 70,
+          width: 125,
+          height: 125,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedbudLeaf);
+
+        // Liriodendron
+        var LiriodendronLeaf = new Kinetic.Image({
+          image: images.LiriodendronLeaf,
+          x: 200,
+          y: 70,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(LiriodendronLeaf);
+
+        // Beech
+        var BeechLeaf = new Kinetic.Image({
+          image: images.BeechLeaf,
+          x: 140,
+          y: 95,
+          width: 85,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(BeechLeaf);
+        
+        // Cherry
+        var CherryLeaf = new Kinetic.Image({
+          image: images.CherryLeaf,
+          x: 175,
+          y: 100,
+          width: 90,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(CherryLeaf);
+
+        // Liriodendron
+        var LiriodendronLeaf = new Kinetic.Image({
+          image: images.LiriodendronLeaf,
+          x: 140,
+          y: 80,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(LiriodendronLeaf);
+
+        // Sassafras
+        var SassafrasMittenLeaf = new Kinetic.Image({
+          image: images.SassafrasMittenLeaf,
+          x: 150,
+          y: 150,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(SassafrasMittenLeaf);
+        
+        // Cherry
+        var CherryLeaf = new Kinetic.Image({
+          image: images.CherryLeaf,
+          x: 175,
+          y: 100,
+          width: 90,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(CherryLeaf);
+
+         // Beech
+        var BeechLeaf = new Kinetic.Image({
+          image: images.BeechLeaf,
+          x: 300,
+          y: 40,
+          width: 85,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(BeechLeaf);
+
+        // White Oak
+        var WhiteOakLeaf = new Kinetic.Image({
+          image: images.WhiteOakLeaf,
+          x: 200,
+          y: 90,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(WhiteOakLeaf);
+
+        // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 200,
+          y: 55,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+        
+        // Cherry
+        var CherryLeaf = new Kinetic.Image({
+          image: images.CherryLeaf,
+          x: 175,
+          y: 100,
+          width: 90,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(CherryLeaf);
+
+        // Sassafras
+        var SassafrasMittenLeaf = new Kinetic.Image({
+          image: images.SassafrasMittenLeaf,
+          x: 200,
+          y: 110,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(SassafrasMittenLeaf);
+
+        // ShagbarkHickoryLeaf
+        var ShagbarkHickoryLeaf = new Kinetic.Image({
+          image: images.ShagbarkHickoryLeaf,
+          x: 200,
+          y: 140,
+          width: 200,
+          height: 200,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(ShagbarkHickoryLeaf);
+
+         // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 150,
+          y: 80,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+
+        // White Oak
+        var WhiteOakLeaf = new Kinetic.Image({
+          image: images.WhiteOakLeaf,
+          x: 100,
+          y: 75,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(WhiteOakLeaf);
+
+         // Liriodendron
+        var LiriodendronLeaf = new Kinetic.Image({
+          image: images.LiriodendronLeaf,
+          x: 290,
+          y: 90,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(LiriodendronLeaf);
+
+        // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 330,
+          y: 100,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+
+        // White Oak
+        var WhiteOakLeaf = new Kinetic.Image({
+          image: images.WhiteOakLeaf,
+          x: 150,
+          y: 40,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(WhiteOakLeaf);
+        
+        // Cherry
+        var CherryLeaf = new Kinetic.Image({
+          image: images.CherryLeaf,
+          x: 175,
+          y: 100,
+          width: 90,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(CherryLeaf);
+
+
+        // White Pine
+        var WhitePineLeaf = new Kinetic.Image({
+          image: images.WhitePineLeaf,
+          x: 200,
+          y: 70,
+          width: 100,
+          height: 150,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(WhitePineLeaf);
+
+        // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 330,
+          y: 40,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+
+
+        // Red Maple
+        var RedMapleLeaf = new Kinetic.Image({
+          image: images.RedMapleLeaf,
+          x: 240,
+          y: 120,
+          width: 100,
+          height: 100,
+          draggable: true,
+          stroke: 'red',
+          strokeWidth: 10,
+          strokeEnabled: false
+        });
+
+        layer.add(RedMapleLeaf);
+        stage.add(layer);
+
+        // use event delegation to update pointer style
+        // and apply borders
+        layer.on('mouseover', function(evt) {
+          var shape = evt.shape;
+          document.body.style.cursor = 'pointer'; 
+          shape.enableStroke();
+          layer.draw();
+        });
+        layer.on('mouseout', function(evt) {
+          var shape = evt.shape;
+          document.body.style.cursor = 'default';  
+          shape.disableStroke();
+          layer.draw();
+        });
+      }
+      var sources = {
+        RedbudLeaf: 'RedbudLeaf.png',
+        RedMapleLeaf: 'RedMapleLeaf.png',
+        BeechLeaf: 'BeechLeaf.png',
+        CherryLeaf: 'CherryLeaf.png',
+        LiriodendronLeaf: 'LiriodendronLeaf.png',
+        SassafrasMittenLeaf: 'SassafrasMittenLeaf.png',
+        ShagbarkHickoryLeaf: 'ShagbarkHickoryLeaf.png',
+        WhiteOakLeaf: 'WhiteOakLeaf.png',
+        WhitePineLeaf: 'WhitePineLeaf.png'
+      };
+      loadImages(sources, initStage);
+
+    </script>
+
+
+<div id="middle">
+
+<input type="submit" name="hideh2" value="Hide Equation and Solution" id="hideh2" /> <input type="submit" name="showh2" value="Show Equation and Solution" id="showh2" />
+
+<br></br>
+
+<div class="showhide2" id="showhide2">
+
+ <script>
+ 
+  document.write("\\[ SID =\\ 1 - \\frac{\\ \\sum n \\left(n - 1 \\right)}{T \\left(T - 1 \\right)}~.~.~.~ SID =\\ 1 - \\frac{\\ 78}{\\left(27 \\right) 26}\\]");
+
+  </script>
+  
+  <h3>for an <strong style="color:blue">89%</strong> chance in this forest that two trees selected randomly will be of <strong style="color:blue">different</strong> species, a very high degree of species diversity based on evaluating species richness and species evenness</h3>
+  
+</div>
+</div>
+<br>
+<div>
+<script>
+
+$('#showhide2').hide(0, function() {});
+
+
+$('#showh2').click(function() {
+  $('#showhide2').show('slow', function() {});
+});
+
+$('#hideh2').click(function() {
+  $('#showhide2').hide('slow', function() {});
+});
+</script>
+</div>
+
+<br/><br/>
+
+</body>
+<div id="end">
+<br/><br/>
+<p style="font-size:x-small; color:gray; text-align:center;">
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">APES Simpson's Index of Diversity activity</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.physics.drexel.edu/~tim" property="cc:attributionName" rel="cc:attributionURL">Jenny Hoffman</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
+<br/></p>
+</div>
+</html>
